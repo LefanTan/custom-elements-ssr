@@ -29,7 +29,7 @@ export class CustomElementRender extends ElementRenderer {
   *renderLight() {
     yield this.element.innerHTML;
   }
-  *renderShadow() {
-    yield this.element.shadowRoot.innerHTML;
-  }
+  // *renderShadow() {
+  //  yield this.element.shadowRoot.innerHTML;
+  // }
 }
