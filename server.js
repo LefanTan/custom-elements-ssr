@@ -23,12 +23,13 @@ async function* render(tag, attrs, children) {
   yield `<${tag}`;
   yield* instance.renderAttributes();
   yield `>`;
-  const shadowContents = instance.renderShadow();
-  if (shadowContents !== undefined) {
-    yield '<template shadowroot="open">';
-    yield* shadowContents;
-    yield '</template>';
-  }
+  
+  // const shadowContents = instance.renderShadow();
+  // if (shadowContents !== undefined) {
+  //  yield '<template shadowroot="open">';
+  //  yield* shadowContents;
+  //  yield '</template>';
+  // }
   yield* instance.renderLight();
   yield `</${tag}>`;
 }
