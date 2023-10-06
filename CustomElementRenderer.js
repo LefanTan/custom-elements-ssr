@@ -1,5 +1,5 @@
-import { ElementRenderer } from '@lit-labs/ssr/lib/element-renderer.js';
-import { escapeHtml } from '@lit-labs/ssr/lib/util/escape-html.js';
+import { ElementRenderer } from "@lit-labs/ssr/lib/element-renderer.js";
+import { escapeHtml } from "@lit-labs/ssr/lib/util/escape-html.js";
 
 export class CustomElementRender extends ElementRenderer {
   constructor(tagName) {
@@ -13,19 +13,18 @@ export class CustomElementRender extends ElementRenderer {
   }
   *renderAttributes() {
     for (const [name, value] of Object.entries(this._attributes)) {
-      if (value === '' || value === undefined || value === null) {
+      if (value === "" || value === undefined || value === null) {
         yield ` ${name}`;
-      }
-      else {
-        yield ` ${name}="${escapeHtml(value)}"`;
+      } else {
+        yield ` ${name}="${escapeHtml(value.toString())}"`;
       }
     }
   }
   async connectedCallback() {
     this.element?.connectedCallback?.();
-    await this.element?.updateComplete || Promise.resolve();
+    (await this.element?.updateComplete) || Promise.resolve();
   }
-  attributeChangedCallback() { }
+  attributeChangedCallback() {}
   *renderLight() {
     yield this.element.innerHTML;
   }
